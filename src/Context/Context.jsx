@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect,useState } from "react";
 import main from "../config/gemini";
 
 export const Context = createContext();
@@ -10,7 +10,17 @@ const ContextProvider = ({ children }) => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
-  
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
+
   const delayPara = (index, nextWord) => {
     setTimeout(function () {
       setResultData(prev => prev + nextWord);
@@ -78,7 +88,9 @@ const ContextProvider = ({ children }) => {
     input,
     setInput,
     resetChat,
-    newChat
+    newChat, 
+    isDark,
+    setIsDark
   };
 
   return (
