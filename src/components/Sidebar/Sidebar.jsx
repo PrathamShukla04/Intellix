@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { assets } from '../../assets/assets';
 import { Context } from '../../Context/Context';
 
@@ -6,13 +6,25 @@ const Sidebar = () => {
   const [extended, setExtended] = useState(true);
   const { onSent, prevPrompts, setRecentPrompt, newChat, isDark, setIsDark } = useContext(Context);
 
+  // Automatically collapse sidebar on small screens initially
+  useEffect(() => {
+    if (window.innerWidth <= 640) {
+      setExtended(false);
+    }
+  }, []);
+
   const loadPrompt = async (prompt) => {
     setRecentPrompt(prompt);
     await onSent(prompt);
   };
 
   return (
-    <div className={`bg-[#f0f4f9] dark:bg-gray-800 ${extended ? 'w-64 sm:w-72' : 'w-14 sm:w-16'} h-screen flex flex-col justify-between p-2 sm:p-4 transition-all duration-300`}>
+    <div
+      className={`${
+        extended ? 'w-64 sm:w-72' : 'w-14 sm:w-16'
+      } h-screen flex flex-col justify-between p-2 sm:p-4 transition-all duration-300 
+      ${isDark ? 'bg-gray-800' : 'bg-[#e2e8f0]'}`}
+    >
       <div className="space-y-4 sm:space-y-6">
         <div className="flex justify-start">
           <img
@@ -53,9 +65,9 @@ const Sidebar = () => {
       <div className="space-y-3 mt-4">
         <button
           onClick={() => setIsDark(!isDark)}
-          className="w-half text-sm px-3 py-2 rounded-md border dark:border-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="w-full text-sm px-3 py-2 rounded-md border dark:border-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
-          {isDark ? '🌞 ' : '🌙 '}
+          {isDark ? '🌞' : '🌙'}
         </button>
 
         <div className="flex items-center gap-2 px-2 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
