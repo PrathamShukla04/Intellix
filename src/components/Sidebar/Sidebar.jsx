@@ -20,9 +20,8 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`${
-        extended ? 'w-64 sm:w-72' : 'w-14 sm:w-16'
-      } h-screen flex flex-col justify-between p-2 sm:p-4 transition-all duration-300 
+      className={`${extended ? 'w-64 sm:w-72' : 'w-14 sm:w-16'
+        } h-screen flex flex-col justify-between p-2 sm:p-4 transition-all duration-300 
       ${isDark ? 'bg-gray-800' : 'bg-[#e2e8f0]'}`}
     >
       <div className="space-y-4 sm:space-y-6">
@@ -65,10 +64,11 @@ const Sidebar = () => {
       <div className="space-y-3 mt-4">
         <button
           onClick={() => setIsDark(!isDark)}
-          className="w-full text-sm px-3 py-2 rounded-md border dark:border-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="w-full text-sm px-3 py-2 rounded-md border border-gray-400 dark:border-gray-500 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           {isDark ? '🌞' : '🌙'}
         </button>
+
 
         <div className="flex items-center gap-2 px-2 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
           <img src={assets.question_icon} alt="Help" className="w-4 h-4 sm:w-5 sm:h-5 dark:bg-white dark:p-1 dark:rounded-full" />

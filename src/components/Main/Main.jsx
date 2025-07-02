@@ -186,7 +186,7 @@ const Main = () => {
           </div>
         </div>
         <p className="text-xs text-gray-500 mt-3 text-center dark:text-gray-400">
-          Gemini may display inaccurate info sometimes!
+          Intellix may display inaccurate info sometimes!
         </p>
       </div>
     </div>
