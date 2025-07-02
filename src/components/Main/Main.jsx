@@ -139,38 +139,45 @@ const Main = () => {
       </div>
 
       <div className="mt-6">
-        <div className="flex items-center bg-white rounded-full px-4 py-2 shadow-md">
+        <div className="relative flex items-center bg-white rounded-full px-4 py-2 shadow-md">
           <input
             type="text"
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && onSent()}
             value={input}
             placeholder="Enter a prompt here"
-            className={`flex-grow px-2 py-2 text-sm bg-transparent outline-none placeholder-gray-500 ${isListening ? 'ring-2 ring-blue-400' : ''
-              }`}
+            className={`flex-grow px-2 py-2 text-sm bg-transparent outline-none placeholder-gray-500 
+    ${isListening ? 'ring-2 ring-blue-400 rounded-full' : ''}`}
           />
+
           {isListening && (
-            <p className="text-sm text-blue-600 mt-2 text-center animate-pulse">
-              🎤 Listening...
-            </p>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="bg-white text-blue-600 text-sm font-semibold px-4 py-1 rounded-full shadow-md animate-pulse border border-blue-300">
+                🎙️ Listening...
+              </div>
+            </div>
           )}
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-3 ml-2">
             <img src={assets.gallery_icon} alt="Gallery" className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer" />
             <img
               src={assets.mic_icon}
               alt="Mic"
               onClick={handleVoiceSearch}
               title="Click to speak"
-              className={`w-4 h-4 sm:w-5 sm:h-5 cursor-pointer transition-transform duration-300 ${isListening ? 'animate-pulse scale-110 text-red-500' : ''
-                }`}
+              className={`w-4 h-4 sm:w-5 sm:h-5 cursor-pointer transition-transform duration-300 
+      ${isListening ? 'animate-pulse scale-110 text-red-500' : ''}`}
             />
             <img onClick={() => onSent()} src={assets.send_icon} alt="Send" className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer" />
           </div>
+
         </div>
+
         <p className="text-xs text-gray-500 mt-3 text-center">
           Gemini may display inaccurate info sometimes!
         </p>
       </div>
+
     </div>
   );
 };
